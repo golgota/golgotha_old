@@ -6,6 +6,7 @@ web:
     - PG_HOST=postgres
     - PG_USERNAME=postgres
     - PG_PASSWORD=postgres
+    - SECRET_KEY_BASE=tn0eZZr56FsC1BdBmQt8y5UzmUFDd2aQx0/ZnY/NgPW0ZZiboK6bDJK0GUOujslH
   volumes:
     - .:/app
     - /app/apps/churchify_web/assets/node_modules

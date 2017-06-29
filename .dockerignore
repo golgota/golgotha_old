@@ -1,0 +1,5 @@
+_build
+deps
+apps/**/tmp
+apps/**/node_modules
+apps/**/npm-debug.log

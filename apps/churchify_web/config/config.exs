@@ -13,7 +13,7 @@ config :churchify_web,
 # Configures the endpoint
 config :churchify_web, Churchify.Web.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "tn0eZZr56FsC1BdBmQt8y5UzmUFDd2aQx0/ZnY/NgPW0ZZiboK6bDJK0GUOujslH",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [view: Churchify.Web.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Churchify.Web.PubSub,
            adapter: Phoenix.PubSub.PG2]

@@ -3,6 +3,8 @@ defmodule Churchify.Web.UserControllerTest do
 
   alias Churchify.Auth
 
+  @moduletag user: true
+
   @create_attrs %{email: "kelvin.stinghen@gmail.com"}
   @update_attrs %{email: "ju.andrade@gmail.com"}
   @invalid_attrs %{email: nil}
@@ -23,13 +25,13 @@ defmodule Churchify.Web.UserControllerTest do
   end
 
   test "creates user and redirects to show when data is valid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user: @create_attrs
+    resp = post conn, user_path(conn, :create), user: @create_attrs
 
-    assert %{id: id} = redirected_params(conn)
-    assert redirected_to(conn) == user_path(conn, :show, id)
+    assert %{id: id} = redirected_params(resp)
+    assert redirected_to(resp) == user_path(conn, :show, id)
 
-    conn = get conn, user_path(conn, :show, id)
-    assert html_response(conn, 200) =~ "Show User"
+    resp = get conn, user_path(conn, :show, id)
+    assert html_response(resp, 200) =~ "Show User"
   end
 
   test "does not create user and renders errors when data is invalid", %{conn: conn} do
@@ -45,11 +47,11 @@ defmodule Churchify.Web.UserControllerTest do
 
   test "updates chosen user and redirects when data is valid", %{conn: conn} do
     user = fixture(:user)
-    conn = put conn, user_path(conn, :update, user), user: @update_attrs
-    assert redirected_to(conn) == user_path(conn, :show, user)
+    resp = put conn, user_path(conn, :update, user), user: @update_attrs
+    assert redirected_to(resp) == user_path(conn, :show, user)
 
-    conn = get conn, user_path(conn, :show, user)
-    assert html_response(conn, 200) =~ "ju.andrade@gmail.com"
+    resp = get conn, user_path(conn, :show, user)
+    assert html_response(resp, 200) =~ "ju.andrade@gmail.com"
   end
 
   test "does not update chosen user and renders errors when data is invalid", %{conn: conn} do
@@ -60,8 +62,8 @@ defmodule Churchify.Web.UserControllerTest do
 
   test "deletes chosen user", %{conn: conn} do
     user = fixture(:user)
-    conn = delete conn, user_path(conn, :delete, user)
-    assert redirected_to(conn) == user_path(conn, :index)
+    resp = delete conn, user_path(conn, :delete, user)
+    assert redirected_to(resp) == user_path(conn, :index)
     assert_error_sent 404, fn ->
       get conn, user_path(conn, :show, user)
     end

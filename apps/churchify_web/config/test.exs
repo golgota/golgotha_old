@@ -5,3 +5,7 @@ use Mix.Config
 config :churchify_web, Churchify.Web.Endpoint,
   http: [port: 4001],
   server: false
+
+config :churchify_web, Churchify.Web.Mailer,
+  adapter: Bamboo.LocalAdapter
+

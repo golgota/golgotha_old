@@ -84,7 +84,7 @@ defmodule Churchify.AuthTest do
 
     test "create_token/1 with valid data creates a token" do
       assert {:ok, %Token{} = token} = Auth.create_token(user_fixture())
-      assert String.length(token.value) == 100
+      assert String.length(token.value) == 96
     end
 
     test "create_token/1 with invalid data returns error changeset" do

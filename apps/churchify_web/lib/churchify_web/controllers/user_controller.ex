@@ -16,8 +16,11 @@ defmodule Churchify.Web.UserController do
   def create(conn, %{"user" => user_params}) do
     case Auth.create_user(user_params) do
       {:ok, user} ->
+        Auth.send_token(user)
+
         conn
-        |> put_flash(:info, "User created successfully.")
+        |> put_flash(:info,
+                     gettext("Signed up sucessfully. Please check your email."))
         |> redirect(to: user_path(conn, :show, user))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -41,7 +44,7 @@ defmodule Churchify.Web.UserController do
     case Auth.update_user(user, user_params) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "User updated successfully.")
+        |> put_flash(:info, gettext("User updated successfully."))
         |> redirect(to: user_path(conn, :show, user))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
@@ -53,7 +56,7 @@ defmodule Churchify.Web.UserController do
     {:ok, _user} = Auth.delete_user(user)
 
     conn
-    |> put_flash(:info, "User deleted successfully.")
+    |> put_flash(:info, gettext("User deleted successfully."))
     |> redirect(to: user_path(conn, :index))
   end
 end

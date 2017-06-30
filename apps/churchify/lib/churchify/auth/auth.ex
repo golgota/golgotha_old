@@ -172,4 +172,60 @@ defmodule Churchify.Auth do
   def delete_token(%Token{} = token) do
     Repo.delete(token)
   end
+
+  @doc """
+  Sends a new magic login token to the user or email.
+  """
+  def send_token(nil), do: {:error, :not_found}
+  def send_token(email) when is_bitstring(email) do
+    User
+    |> Repo.get_by(email: email)
+    |> send_token()
+  end
+  def send_token(user) do
+    user
+    |> create_token()
+    |> do_send_token(user)
+  end
+
+  defp do_send_token({:ok, %Token{} = token}, user) do
+    # token
+    # |> AuthEmail.session_link(user)
+    # |> Mailer.deliver_now()
+
+    {:ok, user}
+  end
+  defp do_send_token(result, _), do: result
+
+  @token_max_age 30 * 60
+
+  defp token_expiration_time do
+    NaiveDateTime.add(NaiveDateTime.utc_now(), (@token_max_age * -1), :second)
+  end
+
+  @doc """
+  Verifies the given token.
+  """
+  def verify_token(value) when is_bitstring(value) do
+    Token
+    |> where([t], t.value == ^value)
+    |> where([t], t.inserted_at > ^token_expiration_time())
+    |> Repo.one()
+    |> verify_token()
+  end
+  def verify_token(nil), do: {:error, :invalid}
+  def verify_token(%Token{} = token) do
+    token
+    |> Repo.preload(:user)
+    |> Repo.delete!()
+    |> do_verify_token()
+  end
+
+  defp do_verify_token(%Token{value: value, user: user, user_id: user_id}) do
+    case Phoenix.Token.verify(Token.secret(), "user", value,
+                              max_age: @token_max_age) do
+      {:ok, ^user_id} -> {:ok, user}
+      result -> result
+    end
+  end
 end

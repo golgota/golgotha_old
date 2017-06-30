@@ -3,8 +3,8 @@ defmodule Churchify.AuthTest do
 
   alias Churchify.Auth
 
-  @valid_attrs %{email: "some email"}
-  @update_attrs %{email: "some updated email"}
+  @valid_attrs %{email: "kelvin.stinghen@gmail.com"}
+  @update_attrs %{email: "ju.andrade@gmail.com"}
   @invalid_attrs %{email: nil}
 
   def user_fixture(attrs \\ %{}) do
@@ -31,7 +31,7 @@ defmodule Churchify.AuthTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Auth.create_user(@valid_attrs)
-      assert user.email == "some email"
+      assert user.email == "kelvin.stinghen@gmail.com"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -42,7 +42,7 @@ defmodule Churchify.AuthTest do
       user = user_fixture()
       assert {:ok, user} = Auth.update_user(user, @update_attrs)
       assert %User{} = user
-      assert user.email == "some updated email"
+      assert user.email == "ju.andrade@gmail.com"
     end
 
     test "update_user/2 with invalid data returns error changeset" do
@@ -84,7 +84,7 @@ defmodule Churchify.AuthTest do
 
     test "create_token/1 with valid data creates a token" do
       assert {:ok, %Token{} = token} = Auth.create_token(user_fixture())
-      assert String.length(token.value) == 96
+      assert String.length(token.value) == 100
     end
 
     test "create_token/1 with invalid data returns error changeset" do

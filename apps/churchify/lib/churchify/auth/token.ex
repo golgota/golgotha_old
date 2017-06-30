@@ -22,11 +22,16 @@ defmodule Churchify.Auth.Token do
     |> unique_constraint(:value)
   end
 
+  @doc """
+  The secret for generating tokens.
+  """
+  def secret do
+    Application.get_env(:churchify, :secret_key_base)
+  end
+
 	# Generates a random and url-encoded token of given length
   defp generate_token(nil), do: nil
   defp generate_token(user) do
-    :churchify
-    |> Application.get_env(:secret_key_base)
-    |> Phoenix.Token.sign("user", user.id)
+    Phoenix.Token.sign(secret(), "user", user.id)
   end
 end

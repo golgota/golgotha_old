@@ -3,11 +3,11 @@
 <ul>
 
   <li>
-    <strong>Email:</strong>
+    <strong><%= gettext("Email:") %></strong>
     <%= @user.email %>
   </li>
 
 </ul>
 
-<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<span><%= link gettext("Edit"), to: user_path(@conn, :edit, @user) %></span>
+<span><%= link gettext("Back"), to: user_path(@conn, :index) %></span>

@@ -8,5 +8,6 @@ defmodule Churchify.Repo.Migrations.CreateChurchify.Auth.User do
       timestamps()
     end
 
+    create unique_index(:auth_users, [:email])
   end
 end

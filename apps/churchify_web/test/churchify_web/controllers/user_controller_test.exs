@@ -3,8 +3,8 @@ defmodule Churchify.Web.UserControllerTest do
 
   alias Churchify.Auth
 
-  @create_attrs %{email: "some email"}
-  @update_attrs %{email: "some updated email"}
+  @create_attrs %{email: "kelvin.stinghen@gmail.com"}
+  @update_attrs %{email: "ju.andrade@gmail.com"}
   @invalid_attrs %{email: nil}
 
   def fixture(:user) do
@@ -49,7 +49,7 @@ defmodule Churchify.Web.UserControllerTest do
     assert redirected_to(conn) == user_path(conn, :show, user)
 
     conn = get conn, user_path(conn, :show, user)
-    assert html_response(conn, 200) =~ "some updated email"
+    assert html_response(conn, 200) =~ "ju.andrade@gmail.com"
   end
 
   test "does not update chosen user and renders errors when data is invalid", %{conn: conn} do

@@ -4,7 +4,7 @@ defmodule Churchify.Repo.Migrations.CreateChurchify.Auth.Token do
   def change do
     create table(:auth_tokens) do
       add :value, :string
-      add :user_id, references(:auth_users, on_delete: :nothing)
+      add :user_id, references(:auth_users, on_delete: :delete_all)
 
       timestamps(updated_at: false)
     end

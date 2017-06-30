@@ -32,7 +32,19 @@ defmodule Churchify.Web.ConnCase do
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(Churchify.Repo, {:shared, self()})
     end
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+
+    conn =
+      Phoenix.ConnTest.build_conn()
+      |> sign_in(tags[:user])
+
+    {:ok, conn: conn}
   end
 
+  alias Churchify.Auth
+
+  def sign_in(conn, nil), do: conn
+  def sign_in(conn, true) do
+    {:ok, user} = Auth.create_user(%{email: "test@user.com"})
+    Plug.Conn.assign(conn, :current_user, user)
+  end
 end

@@ -3,7 +3,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Email</th>
+      <th><%= gettext("Email") %></th>
 
       <th></th>
     </tr>
@@ -14,13 +14,13 @@
       <td><%= user.email %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link gettext("Show"), to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
+        <span><%= link gettext("Edit"), to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
+        <span><%= link gettext("Delete"), to: user_path(@conn, :delete, user), method: :delete, data: [confirm: gettext("Are you sure?")], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New User", to: user_path(@conn, :new) %></span>
+<span><%= link gettext("New User"), to: user_path(@conn, :new) %></span>

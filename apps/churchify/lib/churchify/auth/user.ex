@@ -14,5 +14,7 @@ defmodule Churchify.Auth.User do
     user
     |> cast(attrs, [:email])
     |> validate_required([:email])
+    |> validate_format(:email, ~r/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/ui)
+    |> unique_constraint(:email)
   end
 end

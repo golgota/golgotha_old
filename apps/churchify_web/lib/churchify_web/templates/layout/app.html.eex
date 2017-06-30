@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Churchify!</title>
+    <title>Churchify!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -16,7 +16,15 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+            <li>
+              <%= if @current_user do
+                link gettext("Sign out"),
+                  to: session_path(@conn, :delete, @current_user),
+                  method: :delete
+              else
+                link gettext("Sign in"), to: session_path(@conn, :new)
+              end %>
+            </li>
           </ul>
         </nav>
         <span class="logo"></span>

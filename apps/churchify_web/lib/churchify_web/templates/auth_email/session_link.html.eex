@@ -1,0 +1,9 @@
+<% url = session_url(Churchify.Web.Endpoint, :show, @token) %>
+<p><%= link "Click here", to: url %> to login!</p>
+
+<p>It is valid for 30 minutes.</p>
+
+<p>
+  If the link is not working, copy this to your address bar:
+  <%= link url, to: url %>
+</p>

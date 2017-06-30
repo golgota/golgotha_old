@@ -33,6 +33,10 @@ defmodule Churchify.Web.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bamboo, "~> 1.0.0-rc"},
+      {:bamboo_smtp,
+       github: "kelvinst/bamboo_smtp",
+       branch: "upgrading-bamboo"},
       {:cowboy, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:phoenix, "~> 1.3.0-rc"},

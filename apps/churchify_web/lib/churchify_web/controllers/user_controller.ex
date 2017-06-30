@@ -2,6 +2,7 @@ defmodule Churchify.Web.UserController do
   use Churchify.Web, :controller
 
   alias Churchify.Auth
+  alias Churchify.Web.Auth, as: WebAuth
 
   def index(conn, _params) do
     users = Auth.list_users()
@@ -16,7 +17,7 @@ defmodule Churchify.Web.UserController do
   def create(conn, %{"user" => user_params}) do
     case Auth.create_user(user_params) do
       {:ok, user} ->
-        Auth.send_token(user)
+        WebAuth.send_token(user)
 
         conn
         |> put_flash(:info,

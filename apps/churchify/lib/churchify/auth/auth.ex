@@ -38,6 +38,22 @@ defmodule Churchify.Auth do
   def get_user!(id), do: Repo.get!(User, id)
 
   @doc """
+  Gets a single user by his email.
+
+  Raises `Ecto.NoResultsError` if the User does not exist.
+
+  ## Examples
+
+      iex> get_user!("existent@mail.com")
+      %User{}
+
+      iex> get_user!("inexistent@mail.com")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_user_by_email!(email), do: Repo.get_by!(User, email: email)
+
+  @doc """
   Creates a user.
 
   ## Examples
@@ -172,30 +188,6 @@ defmodule Churchify.Auth do
   def delete_token(%Token{} = token) do
     Repo.delete(token)
   end
-
-  @doc """
-  Sends a new magic login token to the user or email.
-  """
-  def send_token(nil), do: {:error, :not_found}
-  def send_token(email) when is_bitstring(email) do
-    User
-    |> Repo.get_by(email: email)
-    |> send_token()
-  end
-  def send_token(user) do
-    user
-    |> create_token()
-    |> do_send_token(user)
-  end
-
-  defp do_send_token({:ok, %Token{} = token}, user) do
-    # token
-    # |> AuthEmail.session_link(user)
-    # |> Mailer.deliver_now()
-
-    {:ok, user}
-  end
-  defp do_send_token(result, _), do: result
 
   @token_max_age 30 * 60
 

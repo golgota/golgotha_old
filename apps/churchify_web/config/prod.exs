@@ -19,6 +19,18 @@ config :churchify_web, Churchify.Web.Endpoint,
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
+# Configures our mailer
+config :churchify_web, Churchify.Web.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "smtp.sendgrid.net",
+  port: 465,
+  username: System.get_env("SENDGRID_USERNAME"),
+  password: System.get_env("SENDGRID_PASSWORD"),
+  tls: :if_available,
+  allowed_tls_versions: [:"tlsv1", :"tlsv1.1", :"tlsv1.2"],
+  ssl: true,
+  retries: 5
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

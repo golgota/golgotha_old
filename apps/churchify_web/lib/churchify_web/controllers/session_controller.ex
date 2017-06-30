@@ -9,7 +9,7 @@ defmodule Churchify.Web.SessionController do
   end
 
   def create(conn, %{"session" => %{"email" => email}}) do
-    Auth.send_token(email)
+    WebAuth.send_token(email)
 
     conn
     |> put_flash(:info,

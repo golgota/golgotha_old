@@ -1,0 +1,6 @@
+Here is your login link:
+
+<%= session_url(Churchify.Web.Endpoint, :show, @token) %>
+
+
+It is valid for 30 minutes.

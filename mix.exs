@@ -37,6 +37,7 @@ defmodule Churchify.Umbrella.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
+      "prod.setup": ["ecto.migrate", "run apps/churchify/priv/repo/seeds.exs"],
       "test.cover": &run_default_coverage/1,
       "test.cover.html": &run_html_coverage/1
     ]

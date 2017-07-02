@@ -2,7 +2,7 @@
   "name": "churchify",
   "description": "",
   "scripts": {
-    "postdeploy": "cd apps/churchify && POOL_SIZE=2 mix do ecto.migrate, ecto.seed"
+    "postdeploy": "POOL_SIZE=2 mix prod.setup"
   },
   "env": {
     "MIX_ENV": {

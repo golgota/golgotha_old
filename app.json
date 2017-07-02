@@ -2,7 +2,7 @@
   "name": "churchify",
   "description": "",
   "scripts": {
-    "postdeploy": "POOL_SIZE=2 mix ecto.setup"
+    "postdeploy": "POOL_SIZE=2 mix prod.setup"
   },
   "env": {
     "MIX_ENV": {
@@ -22,6 +22,10 @@
     },
     "ADMIN_EMAIL": {
       "description": "Your email, you'll need it to login for the first time.",
+      "required": true
+    },
+    "HEROKU_HOST": {
+      "description": "The host you'll be using. By default, it will be `thenameyougave.herokuapp.com`",
       "required": true
     }
   },

@@ -22,6 +22,7 @@ defmodule Churchify.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Churchify.DataCase
+      import Churchify.Factory
     end
   end
 

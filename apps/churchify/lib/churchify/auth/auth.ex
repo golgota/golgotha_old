@@ -191,33 +191,30 @@ defmodule Churchify.Auth do
 
   @token_max_age 30 * 60
 
-  defp token_expiration_time do
-    NaiveDateTime.add(NaiveDateTime.utc_now(), (@token_max_age * -1), :second)
-  end
-
   @doc """
   Verifies the given token.
   """
-  def verify_token(value) when is_bitstring(value) do
+  def verify_token(value, max_age \\ @token_max_age)
+  def verify_token(nil, _), do: {:error, :not_found}
+  def verify_token(value, max_age) when is_bitstring(value) do
     Token
     |> where([t], t.value == ^value)
-    |> where([t], t.inserted_at > ^token_expiration_time())
     |> Repo.one()
-    |> verify_token()
+    |> verify_token(max_age)
   end
-  def verify_token(nil), do: {:error, :invalid}
-  def verify_token(%Token{} = token) do
+  def verify_token(%Token{} = token, max_age) do
     token
     |> Repo.preload(:user)
     |> Repo.delete!()
-    |> do_verify_token()
+    |> do_verify_token(max_age)
   end
 
-  defp do_verify_token(%Token{value: value, user: user, user_id: user_id}) do
-    case Phoenix.Token.verify(Token.secret(), "user", value,
-                              max_age: @token_max_age) do
+  alias Phoenix.Token, as: PToken
+
+  defp do_verify_token(%Token{value: value, user: user, user_id: user_id}, max_age) do
+    case PToken.verify(Token.secret(), "user", value, max_age: max_age) do
       {:ok, ^user_id} -> {:ok, user}
-      result -> result
+      {:error, _} = result -> result
     end
   end
 end

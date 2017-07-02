@@ -27,12 +27,17 @@ form.link, form.button {
   border-bottom: 1px solid #e5e5e5;
 }
 .logo {
-  width: 519px;
+  width: 71px;
   height: 71px;
   display: inline-block;
   margin-bottom: 1em;
-  background-image: url("/images/phoenix.png");
-  background-size: 519px 71px;
+  background-image: url("/images/cross.png");
+  background-size: 71px 71px;
+}
+.logo-text {
+  font-size: 50px;
+  font-weight: 300;
+  vertical-align: top;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */

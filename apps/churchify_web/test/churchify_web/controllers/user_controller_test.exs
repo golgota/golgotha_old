@@ -1,18 +1,11 @@
 defmodule Churchify.Web.UserControllerTest do
   use Churchify.Web.ConnCase
 
-  alias Churchify.Auth
-
   @moduletag user: true
 
   @create_attrs %{email: "kelvin.stinghen@gmail.com"}
   @update_attrs %{email: "ju.andrade@gmail.com"}
   @invalid_attrs %{email: nil}
-
-  def fixture(:user) do
-    {:ok, user} = Auth.create_user(@create_attrs)
-    user
-  end
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, user_path(conn, :index)
@@ -40,13 +33,13 @@ defmodule Churchify.Web.UserControllerTest do
   end
 
   test "renders form for editing chosen user", %{conn: conn} do
-    user = fixture(:user)
+    user = insert(:user)
     conn = get conn, user_path(conn, :edit, user)
     assert html_response(conn, 200) =~ "Edit User"
   end
 
   test "updates chosen user and redirects when data is valid", %{conn: conn} do
-    user = fixture(:user)
+    user = insert(:user)
     resp = put conn, user_path(conn, :update, user), user: @update_attrs
     assert redirected_to(resp) == user_path(conn, :show, user)
 
@@ -55,13 +48,13 @@ defmodule Churchify.Web.UserControllerTest do
   end
 
   test "does not update chosen user and renders errors when data is invalid", %{conn: conn} do
-    user = fixture(:user)
+    user = insert(:user)
     conn = put conn, user_path(conn, :update, user), user: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit User"
   end
 
   test "deletes chosen user", %{conn: conn} do
-    user = fixture(:user)
+    user = insert(:user)
     resp = delete conn, user_path(conn, :delete, user)
     assert redirected_to(resp) == user_path(conn, :index)
     assert_error_sent 404, fn ->

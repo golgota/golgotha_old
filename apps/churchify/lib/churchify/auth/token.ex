@@ -29,9 +29,14 @@ defmodule Churchify.Auth.Token do
     Application.get_env(:churchify, :secret_key_base)
   end
 
-	# Generates a random and url-encoded token of given length
-  defp generate_token(nil), do: nil
-  defp generate_token(user) do
-    Phoenix.Token.sign(secret(), "user", user.id)
+	@doc """
+  Generates a random and url-encoded token of given length
+  """
+  def generate_token(nil), do: nil
+  def generate_token(%User{} = user) do
+    generate_token(user.id)
+  end
+  def generate_token(user_id) when is_integer(user_id) do
+    Phoenix.Token.sign(secret(), "user", user_id)
   end
 end

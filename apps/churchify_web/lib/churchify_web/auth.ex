@@ -51,5 +51,4 @@ defmodule Churchify.Web.Auth do
 
     {:ok, user}
   end
-  defp do_send_token(result, _), do: result
 end

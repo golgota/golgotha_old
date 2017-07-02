@@ -4,6 +4,9 @@ defmodule Churchify.Umbrella.Mixfile do
   def project do
     [apps_path: "apps",
      start_permanent: Mix.env == :prod,
+     aliases: aliases(),
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: preferred_cli_env(),
      deps: deps()]
   end
 
@@ -20,6 +23,41 @@ defmodule Churchify.Umbrella.Mixfile do
   # Dependencies listed here are available only for this project
   # and cannot be accessed from applications inside the apps folder
   defp deps do
-    []
+    [
+      {:credo, "~> 0.7", only: [:dev, :test]},
+      {:excoveralls, "~> 0.6", only: :test}
+    ]
+  end
+
+  # Aliases are shortcuts or tasks specific to the current project.
+  # For example, to create, migrate and run the seeds file at once:
+  #
+  #     $ mix ecto.setup
+  #
+  # See the documentation for `Mix` for more info on aliases.
+  defp aliases do
+    [
+      "test.cover": &run_default_coverage/1,
+      "test.cover.html": &run_html_coverage/1
+    ]
+  end
+
+  defp preferred_cli_env do
+    ["coveralls": :test,
+     "coveralls.detail": :test,
+     "coveralls.post": :test,
+     "coveralls.html": :test]
+  end
+
+  defp run_default_coverage(args), do: run_coverage("coveralls", args)
+  defp run_html_coverage(args), do: run_coverage("coveralls.html", args)
+  defp run_coverage(task, args) do
+    {_, res} = System.cmd "mix", [task, "--umbrella" | args],
+                          into: IO.binstream(:stdio, :line),
+                          env: [{"MIX_ENV", "test"}]
+
+    if res > 0 do
+      System.at_exit(fn _ -> exit({:shutdown, 1}) end)
+    end
   end
 end

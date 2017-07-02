@@ -25,9 +25,15 @@
                 link gettext("Sign in"), to: session_path(@conn, :new)
               end %>
             </li>
+            <%= if Mix.env == :dev do %>
+              <li>
+                <%= link gettext("Emails"), to: "/emails" %>
+              </li>
+            <% end %>
           </ul>
         </nav>
         <span class="logo"></span>
+        <span class="logo-text">Churchify!</span>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

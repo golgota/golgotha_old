@@ -11,6 +11,8 @@ defmodule Churchify.Mixfile do
      elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
      start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: preferred_cli_env(),
      aliases: aliases(),
      deps: deps()]
   end
@@ -34,7 +36,11 @@ defmodule Churchify.Mixfile do
     [
       {:ecto, "~> 2.1"},
       {:phoenix, "~> 1.3.0-rc"},
-      {:postgrex, ">= 0.0.0"}
+      {:postgrex, ">= 0.0.0"},
+
+      {:credo, "~> 0.7", only: [:dev, :test]},
+      {:ex_machina, "~> 2.0"},
+      {:excoveralls, "~> 0.6", only: :test}
     ]
   end
 
@@ -45,8 +51,31 @@ defmodule Churchify.Mixfile do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+    [
+      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      "test": ["ecto.create --quiet", "ecto.migrate", "test"],
+      "test.cover": &run_default_coverage/1,
+      "test.cover.html": &run_html_coverage/1
+    ]
+  end
+
+  defp preferred_cli_env do
+    ["coveralls": :test,
+     "coveralls.detail": :test,
+     "coveralls.post": :test,
+     "coveralls.html": :test]
+  end
+
+  defp run_default_coverage(args), do: run_coverage("coveralls", args)
+  defp run_html_coverage(args), do: run_coverage("coveralls.html", args)
+  defp run_coverage(task, args) do
+    {_, res} = System.cmd "mix", [task, "--umbrella" | args],
+                          into: IO.binstream(:stdio, :line),
+                          env: [{"MIX_ENV", "test"}]
+
+    if res > 0 do
+      System.at_exit(fn _ -> exit({:shutdown, 1}) end)
+    end
   end
 end

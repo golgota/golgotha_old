@@ -21,6 +21,8 @@ defmodule Churchify.Web.ConnCase do
       use Phoenix.ConnTest
       import Churchify.Web.Router.Helpers
 
+      import Churchify.Factory
+
       # The default endpoint for testing
       @endpoint Churchify.Web.Endpoint
     end

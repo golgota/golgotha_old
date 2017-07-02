@@ -4,7 +4,7 @@ elixir:
 otp_release:
   - '20.0'
 addons:
-  postgresql: '9.5'
+  postgresql: '9.4'
 
 install:
   - mix local.rebar --force
@@ -15,6 +15,7 @@ env:
   global:
     - MIX_ENV=test
     - DATABASE_NAME=travis_ci_test
+    - SECRET_KEY_BASE=tn0eZZr56FsC1BdBmQt8y5UzmUFDd2aQx0/ZnY/NgPW0ZZiboK6bDJK0GUOujslH
   matrix:
     - TEST_FOLDER=.
     - TEST_FOLDER=./apps/churchify

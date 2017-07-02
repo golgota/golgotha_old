@@ -16,7 +16,12 @@ use Mix.Config
 config :churchify_web, Churchify.Web.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   on_init: {Churchify.Web.Endpoint, :load_from_system_env, []},
-  url: [host: "example.com", port: 80],
+  url: [
+    scheme: "https",
+    host: System.get_env("HEROKU_HOST"),
+    port: 443
+  ],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Configures our mailer
@@ -68,7 +73,3 @@ config :churchify_web, Churchify.Web.Mailer,
 #
 #     config :churchify_web, Churchify.Web.Endpoint, server: true
 #
-
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"

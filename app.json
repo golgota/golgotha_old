@@ -23,6 +23,10 @@
     "ADMIN_EMAIL": {
       "description": "Your email, you'll need it to login for the first time.",
       "required": true
+    },
+    "HEROKU_HOST": {
+      "description": "The host you'll be using. By default, it will be `thenameyougave.herokuapp.com`",
+      "required": true
     }
   },
   "formation": {

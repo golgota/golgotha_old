@@ -14,4 +14,4 @@ alias Churchify.Auth
 
 admin_email = System.get_env("ADMIN_EMAIL") || "admin@mail.com"
 
-{:ok, user} = Auth.create_user(%{email: admin_email})
+{:ok, _} = Auth.create_user(%{email: admin_email})

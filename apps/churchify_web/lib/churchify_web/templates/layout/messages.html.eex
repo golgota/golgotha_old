@@ -1,0 +1,21 @@
+<%= if msg = get_flash(@conn, :success) do %>
+  <div class="message is-success">
+    <div class="message-body">
+      <%= msg %>
+    </div>
+  </div>
+<% end %>
+<%= if msg = get_flash(@conn, :info) do %>
+  <div class="message is-info">
+    <div class="message-body">
+      <%= msg %>
+    </div>
+  </div>
+<% end %>
+<%= if msg = get_flash(@conn, :error) do %>
+  <div class="message is-danger">
+    <div class="message-body">
+      <%= msg %>
+    </div>
+  </div>
+<% end %>

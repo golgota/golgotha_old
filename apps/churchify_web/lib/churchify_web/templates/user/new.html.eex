@@ -1,6 +1,6 @@
-<h2>New User</h2>
+<h1 class="title has-text-centered"><%= gettext("New User") %></h1>
 
-<%= render "form.html", changeset: @changeset,
-                        action: user_path(@conn, :create) %>
-
-<span><%= link gettext("Back"), to: user_path(@conn, :index) %></span>
+<%= render "form.html",
+  conn: @conn,
+  changeset: @changeset,
+  action: user_path(@conn, :create) %>

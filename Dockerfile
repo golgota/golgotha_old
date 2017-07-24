@@ -1,26 +1,24 @@
 # https://hub.docker.com/_/elixir/
-FROM elixir:1.4.2
+FROM elixir:1.4.5
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y postgresql-client inotify-tools
-
-# Install the Phoenix framework itself
 RUN mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phx_new.ez
+RUN mix local.hex --force
+RUN mix local.rebar --force
 
-# Install NodeJS 6.x and the NPM
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -y -q nodejs
 
-# Disable this for development purposes, get a way to re-enable it
-# ENV MIX_ENV prod
-
-ADD . /app
-RUN mix local.hex --force
-RUN mix local.rebar --force
+RUN mkdir -p /app
 WORKDIR /app
-RUN mix do deps.get, compile
-RUN cd apps/churchify_web/assets && npm install
+
+COPY . /app
+RUN mix deps.get
+RUN cd apps/churchify_web/assets && npm install --silent
+
+ENV MIX_ENV prod
 
 EXPOSE 4000
 

@@ -7,13 +7,21 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, class: "form-control" %>
+  <div class="field">
+    <%= label f, :email, class: "label" %>
+    <div class="control">
+      <%= text_input f, :email, class: "input" %>
+    </div>
     <%= error_tag f, :email %>
   </div>
 
-  <div class="form-group">
-    <%= submit gettext("Submit"), class: "btn btn-primary" %>
+  <div class="field is-grouped">
+    <div class="control">
+      <%= submit gettext("Submit"), class: "button is-primary" %>
+    </div>
+    <div class="control">
+      <%= link gettext("Back"), to: user_path(@conn, :index), class: "button" %>
+    </div>
   </div>
 <% end %>
+

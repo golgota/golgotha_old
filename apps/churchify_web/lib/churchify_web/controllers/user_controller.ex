@@ -20,17 +20,12 @@ defmodule Churchify.Web.UserController do
         WebAuth.send_token(user)
 
         conn
-        |> put_flash(:info,
+        |> put_flash(:success,
                      gettext("Signed up sucessfully. Please check your email."))
-        |> redirect(to: user_path(conn, :show, user))
+        |> redirect(to: user_path(conn, :edit, user))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    user = Auth.get_user!(id)
-    render(conn, "show.html", user: user)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -45,8 +40,8 @@ defmodule Churchify.Web.UserController do
     case Auth.update_user(user, user_params) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, gettext("User updated successfully."))
-        |> redirect(to: user_path(conn, :show, user))
+        |> put_flash(:success, gettext("User updated successfully."))
+        |> redirect(to: user_path(conn, :edit, user))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
     end
@@ -57,7 +52,7 @@ defmodule Churchify.Web.UserController do
     {:ok, _user} = Auth.delete_user(user)
 
     conn
-    |> put_flash(:info, gettext("User deleted successfully."))
+    |> put_flash(:success, gettext("User deleted successfully."))
     |> redirect(to: user_path(conn, :index))
   end
 end

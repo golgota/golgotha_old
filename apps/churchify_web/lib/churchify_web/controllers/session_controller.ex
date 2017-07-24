@@ -12,7 +12,7 @@ defmodule Churchify.Web.SessionController do
     WebAuth.send_token(email)
 
     conn
-    |> put_flash(:info,
+    |> put_flash(:success,
                  gettext("We have sent you a link for login to your email."))
     |> redirect(to: page_path(conn, :index))
   end
@@ -22,7 +22,7 @@ defmodule Churchify.Web.SessionController do
       {:ok, user} ->
         conn
         |> WebAuth.sign_in(user)
-        |> put_flash(:info, gettext("You signed in successfully."))
+        |> put_flash(:success, gettext("You signed in successfully."))
         |> redirect(to: page_path(conn, :index))
       {:error, _reason} ->
         conn
@@ -34,7 +34,7 @@ defmodule Churchify.Web.SessionController do
   def delete(conn, _) do
     conn
     |> WebAuth.sign_out()
-    |> put_flash(:info, gettext("You signed out successfully."))
+    |> put_flash(:success, gettext("You signed out successfully."))
     |> redirect(to: page_path(conn, :index))
   end
 end

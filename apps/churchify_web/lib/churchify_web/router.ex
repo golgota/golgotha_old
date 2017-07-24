@@ -34,6 +34,6 @@ defmodule Churchify.Web.Router do
   scope "/", Churchify.Web do
     pipe_through [:browser, :force_auth]
 
-    resources "/users", UserController
+    resources "/users", UserController, except: [:show]
   end
 end

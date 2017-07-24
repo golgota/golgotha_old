@@ -13,7 +13,7 @@ defmodule Churchify.Web.SessionControllerTest do
     conn = post conn, session_path(conn, :create), session: @create_attrs
 
     assert redirected_to(conn) == page_path(conn, :index)
-    assert get_flash(conn, :info) =~
+    assert get_flash(conn, :success) =~
       "We have sent you a link for login to your email."
   end
 
@@ -22,7 +22,7 @@ defmodule Churchify.Web.SessionControllerTest do
     resp = get conn, session_path(conn, :show, token.value)
 
     assert redirected_to(resp) == page_path(conn, :index)
-    assert get_flash(resp, :info) =~ "You signed in successfully."
+    assert get_flash(resp, :success) =~ "You signed in successfully."
 
     resp = get conn, session_path(conn, :show, token.value)
 
@@ -34,6 +34,6 @@ defmodule Churchify.Web.SessionControllerTest do
   test "deletes chosen session", %{conn: conn} do
     conn = delete conn, session_path(conn, :delete, 0)
     assert redirected_to(conn) == page_path(conn, :index)
-    assert get_flash(conn, :info) =~ "You signed out successfully."
+    assert get_flash(conn, :success) =~ "You signed out successfully."
   end
 end

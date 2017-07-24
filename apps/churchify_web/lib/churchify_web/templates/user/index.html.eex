@@ -1,4 +1,4 @@
-<h2>Listing Users</h2>
+<h1 class="title has-text-centered"><%= gettext("Listing Users") %></h1>
 
 <table class="table">
   <thead>
@@ -13,14 +13,25 @@
     <tr>
       <td><%= user.email %></td>
 
-      <td class="text-right">
-        <span><%= link gettext("Show"), to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link gettext("Edit"), to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link gettext("Delete"), to: user_path(@conn, :delete, user), method: :delete, data: [confirm: gettext("Are you sure?")], class: "btn btn-danger btn-xs" %></span>
+      <td>
+        <div class="field has-addons is-pulled-right">
+          <div class="control">
+            <%= link gettext("Edit"),
+              to: user_path(@conn, :edit, user),
+              class: "button is-small" %>
+          </div>
+          <div class="control">
+            <%= link gettext("Delete"),
+              to: user_path(@conn, :delete, user),
+              method: :delete,
+              data: [confirm: gettext("Are you sure?")],
+              class: "button is-danger is-small" %>
+          </div>
+        </div>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link gettext("New User"), to: user_path(@conn, :new) %></span>
+<%= link gettext("New User"), to: user_path(@conn, :new), class: "button is-primary" %>

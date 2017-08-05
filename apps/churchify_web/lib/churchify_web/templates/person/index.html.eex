@@ -1,0 +1,40 @@
+<h2>Listing People</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Birth info</th>
+      <th>Civil info</th>
+      <th>Professional info</th>
+      <th>Church info</th>
+      <th>Contact infos</th>
+      <th>Address info</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for person <- @people do %>
+    <tr>
+      <td><%= person.name %></td>
+      <td><%= person.gender %></td>
+      <td><%= person.birth_info %></td>
+      <td><%= person.civil_info %></td>
+      <td><%= person.professional_info %></td>
+      <td><%= person.church_info %></td>
+      <td><%= person.contact_infos %></td>
+      <td><%= person.address_info %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: person_path(@conn, :show, person), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: person_path(@conn, :edit, person), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: person_path(@conn, :delete, person), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Person", to: person_path(@conn, :new) %></span>

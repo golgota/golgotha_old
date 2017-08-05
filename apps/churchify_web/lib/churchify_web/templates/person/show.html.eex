@@ -1,0 +1,48 @@
+<h2>Show Person</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @person.name %>
+  </li>
+
+  <li>
+    <strong>Gender:</strong>
+    <%= @person.gender %>
+  </li>
+
+  <li>
+    <strong>Birth info:</strong>
+    <%= @person.birth_info %>
+  </li>
+
+  <li>
+    <strong>Civil info:</strong>
+    <%= @person.civil_info %>
+  </li>
+
+  <li>
+    <strong>Professional info:</strong>
+    <%= @person.professional_info %>
+  </li>
+
+  <li>
+    <strong>Church info:</strong>
+    <%= @person.church_info %>
+  </li>
+
+  <li>
+    <strong>Contact infos:</strong>
+    <%= @person.contact_infos %>
+  </li>
+
+  <li>
+    <strong>Address info:</strong>
+    <%= @person.address_info %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: person_path(@conn, :edit, @person) %></span>
+<span><%= link "Back", to: person_path(@conn, :index) %></span>

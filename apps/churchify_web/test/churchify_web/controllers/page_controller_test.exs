@@ -1,5 +1,5 @@
-defmodule Churchify.Web.PageControllerTest do
-  use Churchify.Web.ConnCase
+defmodule ChurchifyWeb.PageControllerTest do
+  use ChurchifyWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

@@ -1,8 +1,8 @@
-defmodule Churchify.Web.Router do
-  use Churchify.Web, :router
+defmodule ChurchifyWeb.Router do
+  use ChurchifyWeb, :router
 
-  alias Churchify.Web.AuthPlug
-  alias Churchify.Web.ForceAuthPlug
+  alias ChurchifyWeb.AuthPlug
+  alias ChurchifyWeb.ForceAuthPlug
 
   if Mix.env == :dev do
     forward "/emails", Bamboo.SentEmailViewerPlug
@@ -22,7 +22,7 @@ defmodule Churchify.Web.Router do
     plug ForceAuthPlug
   end
 
-  scope "/", Churchify.Web do
+  scope "/", ChurchifyWeb do
     pipe_through :browser
 
     get "/", PageController, :index
@@ -31,7 +31,7 @@ defmodule Churchify.Web.Router do
       only: [:new, :create, :delete, :show]
   end
 
-  scope "/", Churchify.Web do
+  scope "/", ChurchifyWeb do
     pipe_through [:browser, :force_auth]
 
     resources "/people", PersonController

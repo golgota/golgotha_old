@@ -1,3 +1,3 @@
-defmodule Churchify.Web.SessionView do
-  use Churchify.Web, :view
+defmodule ChurchifyWeb.SessionView do
+  use ChurchifyWeb, :view
 end

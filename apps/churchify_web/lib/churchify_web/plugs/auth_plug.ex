@@ -1,5 +1,5 @@
-defmodule Churchify.Web.AuthPlug do
-  alias Churchify.Web.Auth
+defmodule ChurchifyWeb.AuthPlug do
+  alias ChurchifyWeb.Auth
 
   def init(_), do: nil
 

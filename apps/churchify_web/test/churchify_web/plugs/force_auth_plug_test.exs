@@ -1,6 +1,6 @@
-defmodule Churchify.Web.ForceAuthPlugTest do
-  use Churchify.Web.ConnCase
-  alias Churchify.Web.ForceAuthPlug
+defmodule ChurchifyWeb.ForceAuthPlugTest do
+  use ChurchifyWeb.ConnCase
+  alias ChurchifyWeb.ForceAuthPlug
 
   test "plug must check for current user assign", %{conn: conn} do
     conn = Plug.Test.init_test_session(conn, [])

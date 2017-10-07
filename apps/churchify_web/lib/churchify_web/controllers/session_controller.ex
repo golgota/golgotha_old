@@ -1,8 +1,8 @@
-defmodule Churchify.Web.SessionController do
-  use Churchify.Web, :controller
+defmodule ChurchifyWeb.SessionController do
+  use ChurchifyWeb, :controller
 
   alias Churchify.Auth
-  alias Churchify.Web.Auth, as: WebAuth
+  alias ChurchifyWeb.Auth, as: WebAuth
 
   def new(conn, _params) do
     render(conn, "new.html")

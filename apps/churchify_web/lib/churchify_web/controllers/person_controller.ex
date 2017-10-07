@@ -1,5 +1,5 @@
-defmodule Churchify.Web.PersonController do
-  use Churchify.Web, :controller
+defmodule ChurchifyWeb.PersonController do
+  use ChurchifyWeb, :controller
 
   alias Churchify.Member
 

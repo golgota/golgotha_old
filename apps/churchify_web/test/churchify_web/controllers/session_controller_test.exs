@@ -1,5 +1,5 @@
-defmodule Churchify.Web.SessionControllerTest do
-  use Churchify.Web.ConnCase
+defmodule ChurchifyWeb.SessionControllerTest do
+  use ChurchifyWeb.ConnCase
 
   @create_attrs %{email: "kelvin.stinghen@gmail.com"}
 

@@ -1,7 +1,7 @@
-defmodule Churchify.Web.ForceAuthPlug do
+defmodule ChurchifyWeb.ForceAuthPlug do
   use Phoenix.Controller
-  import Churchify.Web.Gettext
-  alias Churchify.Web.Router.Helpers
+  import ChurchifyWeb.Gettext
+  alias ChurchifyWeb.Router.Helpers
 
   def init(_), do: nil
 

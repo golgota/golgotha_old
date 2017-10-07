@@ -1,3 +1,3 @@
-defmodule Churchify.Web.PersonView do
-  use Churchify.Web, :view
+defmodule ChurchifyWeb.PersonView do
+  use ChurchifyWeb, :view
 end

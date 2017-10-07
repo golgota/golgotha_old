@@ -1,5 +1,5 @@
-defmodule Churchify.Web.LayoutView do
-  use Churchify.Web, :view
+defmodule ChurchifyWeb.LayoutView do
+  use ChurchifyWeb, :view
 
   alias Churchify.Auth.User
 

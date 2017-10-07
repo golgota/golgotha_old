@@ -1,7 +1,7 @@
-defmodule Churchify.Web.AuthTest do
-  use Churchify.Web.ConnCase
+defmodule ChurchifyWeb.AuthTest do
+  use ChurchifyWeb.ConnCase
 
-  alias Churchify.Web.Auth
+  alias ChurchifyWeb.Auth
 
   test "sign_in/2 must assign current user and save him to session", %{conn: conn} do
     conn = Plug.Test.init_test_session(conn, [])

@@ -1,4 +1,4 @@
-defmodule Churchify.Web.ErrorHelpers do
+defmodule ChurchifyWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule Churchify.Web.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(Churchify.Web.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(ChurchifyWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(Churchify.Web.Gettext, "errors", msg, opts)
+      Gettext.dgettext(ChurchifyWeb.Gettext, "errors", msg, opts)
     end
   end
 end

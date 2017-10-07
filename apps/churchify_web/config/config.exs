@@ -7,15 +7,15 @@ use Mix.Config
 
 # General application configuration
 config :churchify_web,
-  namespace: Churchify.Web,
+  namespace: ChurchifyWeb,
   ecto_repos: [Churchify.Repo]
 
 # Configures the endpoint
-config :churchify_web, Churchify.Web.Endpoint,
+config :churchify_web, ChurchifyWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
-  render_errors: [view: Churchify.Web.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Churchify.Web.PubSub,
+  render_errors: [view: ChurchifyWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: ChurchifyWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

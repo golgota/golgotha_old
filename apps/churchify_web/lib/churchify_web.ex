@@ -1,12 +1,12 @@
-defmodule Churchify.Web do
+defmodule ChurchifyWeb do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use Churchify.Web, :controller
-      use Churchify.Web, :view
+      use ChurchifyWeb, :controller
+      use ChurchifyWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -18,17 +18,17 @@ defmodule Churchify.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: Churchify.Web
+      use Phoenix.Controller, namespace: ChurchifyWeb
       import Plug.Conn
-      import Churchify.Web.Router.Helpers
-      import Churchify.Web.Gettext
+      import ChurchifyWeb.Router.Helpers
+      import ChurchifyWeb.Gettext
     end
   end
 
   def view do
     quote do
       use Phoenix.View, root: "lib/churchify_web/templates",
-                        namespace: Churchify.Web
+                        namespace: ChurchifyWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -36,9 +36,9 @@ defmodule Churchify.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import Churchify.Web.Router.Helpers
-      import Churchify.Web.ErrorHelpers
-      import Churchify.Web.Gettext
+      import ChurchifyWeb.Router.Helpers
+      import ChurchifyWeb.ErrorHelpers
+      import ChurchifyWeb.Gettext
     end
   end
 
@@ -53,7 +53,7 @@ defmodule Churchify.Web do
   def channel do
     quote do
       use Phoenix.Channel
-      import Churchify.Web.Gettext
+      import ChurchifyWeb.Gettext
     end
   end
 

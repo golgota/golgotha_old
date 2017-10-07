@@ -1,8 +1,8 @@
-defmodule Churchify.Web.UserController do
-  use Churchify.Web, :controller
+defmodule ChurchifyWeb.UserController do
+  use ChurchifyWeb, :controller
 
   alias Churchify.Auth
-  alias Churchify.Web.Auth, as: WebAuth
+  alias ChurchifyWeb.Auth, as: WebAuth
 
   def index(conn, _params) do
     users = Auth.list_users()

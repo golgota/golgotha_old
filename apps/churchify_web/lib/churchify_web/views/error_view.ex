@@ -1,5 +1,5 @@
-defmodule Churchify.Web.ErrorView do
-  use Churchify.Web, :view
+defmodule ChurchifyWeb.ErrorView do
+  use ChurchifyWeb, :view
 
   def render("404.html", _assigns) do
     gettext("Page not found")

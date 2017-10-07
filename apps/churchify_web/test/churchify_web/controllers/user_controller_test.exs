@@ -1,5 +1,5 @@
-defmodule Churchify.Web.UserControllerTest do
-  use Churchify.Web.ConnCase
+defmodule ChurchifyWeb.UserControllerTest do
+  use ChurchifyWeb.ConnCase
 
   @moduletag user: true
 

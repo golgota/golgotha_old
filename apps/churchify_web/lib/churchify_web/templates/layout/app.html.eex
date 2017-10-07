@@ -14,12 +14,10 @@
   <body>
     <%= render "header.html", conn: @conn, current_user: @current_user %>
 
-    <main role="content">
-      <div class="container">
-        <%= render "messages.html", conn: @conn %>
+    <main>
+      <%= render "messages.html", conn: @conn %>
 
-        <%= render @view_module, @view_template, assigns %>
-      </div>
+      <%= render @view_module, @view_template, assigns %>
     </main>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>

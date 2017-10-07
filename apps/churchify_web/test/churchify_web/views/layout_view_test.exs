@@ -1,3 +1,3 @@
-defmodule Churchify.Web.LayoutViewTest do
-  use Churchify.Web.ConnCase, async: true
+defmodule ChurchifyWeb.LayoutViewTest do
+  use ChurchifyWeb.ConnCase, async: true
 end

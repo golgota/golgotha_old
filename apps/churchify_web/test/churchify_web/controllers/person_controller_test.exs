@@ -1,5 +1,5 @@
-defmodule Churchify.Web.PersonControllerTest do
-  use Churchify.Web.ConnCase
+defmodule ChurchifyWeb.PersonControllerTest do
+  use ChurchifyWeb.ConnCase
 
   alias Churchify.Member
 

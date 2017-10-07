@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :churchify_web, Churchify.Web.Endpoint,
+config :churchify_web, ChurchifyWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -14,7 +14,7 @@ config :churchify_web, Churchify.Web.Endpoint,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../assets", __DIR__)]]
 
-config :churchify_web, Churchify.Web.Mailer,
+config :churchify_web, ChurchifyWeb.Mailer,
   adapter: Bamboo.LocalAdapter
 
 # ## SSL Support
@@ -34,7 +34,7 @@ config :churchify_web, Churchify.Web.Mailer,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :churchify_web, Churchify.Web.Endpoint,
+config :churchify_web, ChurchifyWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},

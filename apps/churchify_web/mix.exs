@@ -1,4 +1,4 @@
-defmodule Churchify.Web.Mixfile do
+defmodule ChurchifyWeb.Mixfile do
   use Mix.Project
 
   def project do
@@ -22,7 +22,7 @@ defmodule Churchify.Web.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {Churchify.Web.Application, []},
+    [mod: {ChurchifyWeb.Application, []},
      extra_applications: [:logger, :runtime_tools]]
   end
 
@@ -41,7 +41,7 @@ defmodule Churchify.Web.Mixfile do
        branch: "upgrading-bamboo"},
       {:cowboy, "~> 1.0"},
       {:gettext, "~> 0.11"},
-      {:phoenix, "~> 1.3.0-rc"},
+      {:phoenix, "~> 1.3.0"},
       {:phoenix_ecto, "~> 3.2"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_pubsub, "~> 1.0"},

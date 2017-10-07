@@ -4,7 +4,7 @@ defmodule Churchify.Application do
 
   The churchify system business domain lives in this application.
 
-  Exposes API to clients such as the `Churchify.Web` application
+  Exposes API to clients such as the `ChurchifyWeb` application
   for use in channels, controllers, and elsewhere.
   """
   use Application

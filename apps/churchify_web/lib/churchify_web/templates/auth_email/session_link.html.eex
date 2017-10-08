@@ -1,4 +1,4 @@
-<% url = session_url(Churchify.Web.Endpoint, :show, @token) %>
+<% url = session_url(ChurchifyWeb.Endpoint, :show, @token) %>
 <p><%= link "Click here", to: url %> to login!</p>
 
 <p>It is valid for 30 minutes.</p>

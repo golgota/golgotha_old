@@ -1,3 +1,3 @@
-defmodule Churchify.Web.AuthEmailView do
-  use Churchify.Web, :view
+defmodule ChurchifyWeb.AuthEmailView do
+  use ChurchifyWeb, :view
 end

@@ -1,4 +1,4 @@
-defmodule Churchify.Web.ConnCase do
+defmodule ChurchifyWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,12 +19,12 @@ defmodule Churchify.Web.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import Churchify.Web.Router.Helpers
+      import ChurchifyWeb.Router.Helpers
 
       import Churchify.Factory
 
       # The default endpoint for testing
-      @endpoint Churchify.Web.Endpoint
+      @endpoint ChurchifyWeb.Endpoint
     end
   end
 

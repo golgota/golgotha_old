@@ -1,0 +1,6 @@
+<h1 class="title has-text-centered"><%= gettext("New Person") %></h1>
+
+<%= render "form.html",
+  conn: @conn,
+  changeset: @changeset,
+  action: person_path(@conn, :create) %>

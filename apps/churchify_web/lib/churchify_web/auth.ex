@@ -1,11 +1,11 @@
-defmodule Churchify.Web.Auth do
+defmodule ChurchifyWeb.Auth do
   import Plug.Conn
 
   alias Churchify.Auth
   alias Churchify.Auth.Token
   alias Churchify.Auth.User
-  alias Churchify.Web.AuthEmail
-  alias Churchify.Web.Mailer
+  alias ChurchifyWeb.AuthEmail
+  alias ChurchifyWeb.Mailer
 
   @doc """
   Signs the user in.

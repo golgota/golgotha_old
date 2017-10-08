@@ -1,8 +1,14 @@
-<div class="jumbotron">
-  <h2><%= gettext "Get Right Church!" %></h2>
-  <p class="lead">
-    <%= gettext "And let's go home." %></br>
-    <%= gettext "Manage your church to focus in the kingdom." %>
-  </p>
+<div class="hero is-large">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        <%= gettext "Get Right Church!" %>
+      </h1>
+      <p class="subtitle">
+        <%= gettext "And let's go home." %></br>
+        <%= gettext "Manage your church to focus in the kingdom." %>
+      </p>
+    </div>
+  </div>
 </div>
 

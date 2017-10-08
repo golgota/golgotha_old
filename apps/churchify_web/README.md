@@ -1,4 +1,4 @@
-# Churchify.Web
+# ChurchifyWeb
 
 To start your Phoenix server:
 

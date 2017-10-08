@@ -1,4 +1,4 @@
-defmodule Churchify.Web.ChannelCase do
+defmodule ChurchifyWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,7 +21,7 @@ defmodule Churchify.Web.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint Churchify.Web.Endpoint
+      @endpoint ChurchifyWeb.Endpoint
     end
   end
 

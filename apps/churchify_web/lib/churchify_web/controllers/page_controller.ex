@@ -1,5 +1,5 @@
-defmodule Churchify.Web.PageController do
-  use Churchify.Web, :controller
+defmodule ChurchifyWeb.PageController do
+  use ChurchifyWeb, :controller
 
   def index(conn, _params) do
     render conn, "index.html"

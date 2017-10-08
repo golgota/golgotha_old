@@ -1,0 +1,39 @@
+<h1 class="title has-text-centered"><%= gettext("Listing People") %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for person <- @people do %>
+    <tr>
+      <td><%= person.name %></td>
+      <td><%= person.gender %></td>
+
+      <td>
+        <div class="field has-addons is-pulled-right">
+          <div class="control">
+            <%= link gettext("Edit"),
+              to: person_path(@conn, :edit, person),
+              class: "button is-small" %>
+          </div>
+          <div class="control">
+            <%= link gettext("Delete"),
+              to: person_path(@conn, :delete, person),
+              method: :delete,
+              data: [confirm: gettext("Are you sure?")],
+              class: "button is-danger is-small" %>
+          </div>
+        </div>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link gettext("New Person"), to: person_path(@conn, :new), class: "button is-primary" %>

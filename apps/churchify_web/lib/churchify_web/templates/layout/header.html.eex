@@ -1,0 +1,68 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <%= link to: page_path(@conn, :index),
+      class: "navbar-item",
+      tabindex: -1 do %>
+      <img src="<%= static_url(@conn, "/images/cross.png") %>"></img>
+    <% end %>
+    <div class="navbar-burger burger" data-target="navMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div id="navMenu" class="navbar-menu">
+    <div class="navbar-start">
+      <%= if @current_user do %>
+        <%= link gettext("Users"),
+          to: user_path(@conn, :index),
+          class: "navbar-item",
+          tabindex: -1 %>
+        <%= link gettext("People"),
+          to: person_path(@conn, :index),
+          class: "navbar-item",
+          tabindex: -1 %>
+      <% end %>
+    </div>
+    <div class="navbar-end">
+      <%= if user = @current_user do %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">
+            <img src="<%= gravatar_url(user) %>" class="header-user-avatar"/>
+            <%= user.email %>
+          </div>
+          <div class="navbar-dropdown is-boxed navbar-dropdown-right">
+            <%= link gettext("User config"),
+              to: user_path(@conn, :edit, user),
+              class: "navbar-item",
+              tabindex: -1 %>
+            <div class="navbar-divider"></div>
+            <%= if Mix.env == :dev do %>
+              <%= link gettext("Emails"),
+                to: "/emails",
+                class: "navbar-item",
+                tabindex: -1 %>
+            <% end %>
+            <%= link gettext("Sign out"),
+              to: session_path(@conn, :delete, 0),
+              method: :delete,
+              class: "navbar-item",
+              tabindex: -1 %>
+          </div>
+        </div>
+      <% else %>
+        <%= if Mix.env == :dev do %>
+          <%= link gettext("Emails"),
+            to: "/emails",
+            class: "navbar-item",
+            tabindex: -1 %>
+        <% end %>
+
+        <%= link(gettext("Sign in"),
+          to: session_path(@conn, :new),
+          class: "navbar-item",
+          tabindex: -1) %>
+      <% end %>
+    </div>
+  </div>
+</nav>

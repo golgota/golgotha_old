@@ -1,23 +1,39 @@
-web:
-  build: .
-  command: elixir --erl "-smp disable" -S mix phx.server
-  environment:
-    - PORT=4000
-    - PG_HOST=postgres
-    - PG_USERNAME=postgres
-    - PG_PASSWORD=postgres
-    - SECRET_KEY_BASE=tn0eZZr56FsC1BdBmQt8y5UzmUFDd2aQx0/ZnY/NgPW0ZZiboK6bDJK0GUOujslH
-  volumes:
-    - .:/app
-    - /app/apps/churchify_web/assets/node_modules
-  ports:
-    - 4000:4000
-  links:
-    - postgres
+version: '2'
+services:
+  web:
+    build: .
+    environment:
+      - MIX_ENV=dev
+      - PORT=4000
+      - PG_HOST=db
+      - PG_USERNAME=postgres
+      - PG_PASSWORD=postgres
+      - SECRET_KEY_BASE=tn0eZZr56FsC1BdBmQt8y5UzmUFDd2aQx0/ZnY/NgPW0ZZiboK6bDJK0GUOujslH
+    volumes:
+      - .:/app
+      - /app/apps/churchify_web/assets/node_modules
+    ports:
+      - 4000:4000
+    links:
+      - db
 
-postgres:
-  image: postgres:9.5
-  environment:
-    - POSTGRES_PASSWORD=postgres
-  ports:
-    - 5432
+  web_tests:
+    image: churchify_web
+    command: mix do ecto.reset, test
+    environment:
+      - MIX_ENV=test
+      - PG_HOST=db
+      - PG_USERNAME=postgres
+      - PG_PASSWORD=postgres
+      - SECRET_KEY_BASE=h10894iofh1gb3o48v9hij413h4g091348yghY/NgPW0ZZiboK6bDJ12hgu3iy99
+    volumes_from:
+      - web
+    links:
+      - db
+
+  db:
+    image: postgres:9.5
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432

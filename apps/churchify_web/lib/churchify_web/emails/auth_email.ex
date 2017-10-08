@@ -1,9 +1,9 @@
-defmodule Churchify.Web.AuthEmail do
-  use Bamboo.Phoenix, view: Churchify.Web.AuthEmailView
+defmodule ChurchifyWeb.AuthEmail do
+  use Bamboo.Phoenix, view: ChurchifyWeb.AuthEmailView
 
   import Bamboo.Email
 
-  import Churchify.Web.Gettext
+  import ChurchifyWeb.Gettext
 
   def session_link(token) do
     new_email()

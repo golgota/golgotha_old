@@ -1,5 +1,5 @@
-defmodule Churchify.Web.UserControllerTest do
-  use Churchify.Web.ConnCase
+defmodule ChurchifyWeb.UserControllerTest do
+  use ChurchifyWeb.ConnCase
 
   @moduletag user: true
 
@@ -17,14 +17,14 @@ defmodule Churchify.Web.UserControllerTest do
     assert html_response(conn, 200) =~ "New User"
   end
 
-  test "creates user and redirects to show when data is valid", %{conn: conn} do
+  test "creates user and redirects to edit when data is valid", %{conn: conn} do
     resp = post conn, user_path(conn, :create), user: @create_attrs
 
     assert %{id: id} = redirected_params(resp)
-    assert redirected_to(resp) == user_path(conn, :show, id)
+    assert redirected_to(resp) == user_path(conn, :edit, id)
 
-    resp = get conn, user_path(conn, :show, id)
-    assert html_response(resp, 200) =~ "Show User"
+    resp = get conn, user_path(conn, :edit, id)
+    assert html_response(resp, 200) =~ "Edit User"
   end
 
   test "does not create user and renders errors when data is invalid", %{conn: conn} do
@@ -41,9 +41,9 @@ defmodule Churchify.Web.UserControllerTest do
   test "updates chosen user and redirects when data is valid", %{conn: conn} do
     user = insert(:user)
     resp = put conn, user_path(conn, :update, user), user: @update_attrs
-    assert redirected_to(resp) == user_path(conn, :show, user)
+    assert redirected_to(resp) == user_path(conn, :edit, user)
 
-    resp = get conn, user_path(conn, :show, user)
+    resp = get conn, user_path(conn, :edit, user)
     assert html_response(resp, 200) =~ "ju.andrade@gmail.com"
   end
 
@@ -58,7 +58,7 @@ defmodule Churchify.Web.UserControllerTest do
     resp = delete conn, user_path(conn, :delete, user)
     assert redirected_to(resp) == user_path(conn, :index)
     assert_error_sent 404, fn ->
-      get conn, user_path(conn, :show, user)
+      get conn, user_path(conn, :edit, user)
     end
   end
 end

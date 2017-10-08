@@ -18,15 +18,10 @@ defmodule ChurchifyWeb.PersonController do
       {:ok, person} ->
         conn
         |> put_flash(:info, "Person created successfully.")
-        |> redirect(to: person_path(conn, :show, person))
+        |> redirect(to: person_path(conn, :edit, person))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
-  end
-
-  def show(conn, %{"id" => id}) do
-    person = Member.get_person!(id)
-    render(conn, "show.html", person: person)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -42,7 +37,7 @@ defmodule ChurchifyWeb.PersonController do
       {:ok, person} ->
         conn
         |> put_flash(:info, "Person updated successfully.")
-        |> redirect(to: person_path(conn, :show, person))
+        |> redirect(to: person_path(conn, :edit, person))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", person: person, changeset: changeset)
     end

@@ -1,59 +1,34 @@
 <%= form_for @changeset, @action, fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+      <p><%= gettext("""
+      Oops, something went wrong! Please check the errors below.
+      """) %></p>
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
+  <div class="field">
+    <%= label f, :name, class: "label" %>
+    <div class="control">
+      <%= text_input f, :name, class: "input" %>
+    </div>
     <%= error_tag f, :name %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :gender, class: "control-label" %>
-    <%= text_input f, :gender, class: "form-control" %>
+  <div class="field">
+    <%= label f, :gender, class: "label" %>
+    <div class="control">
+      <%= text_input f, :gender, class: "input" %>
+    </div>
     <%= error_tag f, :gender %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :birth_info, class: "control-label" %>
-    <%= text_input f, :birth_info, class: "form-control" %>
-    <%= error_tag f, :birth_info %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :civil_info, class: "control-label" %>
-    <%= text_input f, :civil_info, class: "form-control" %>
-    <%= error_tag f, :civil_info %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :professional_info, class: "control-label" %>
-    <%= text_input f, :professional_info, class: "form-control" %>
-    <%= error_tag f, :professional_info %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :church_info, class: "control-label" %>
-    <%= text_input f, :church_info, class: "form-control" %>
-    <%= error_tag f, :church_info %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :contact_infos, class: "control-label" %>
-    <%= text_input f, :contact_infos, class: "form-control" %>
-    <%= error_tag f, :contact_infos %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :address_info, class: "control-label" %>
-    <%= text_input f, :address_info, class: "form-control" %>
-    <%= error_tag f, :address_info %>
-  </div>
-
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+  <div class="field is-grouped">
+    <div class="control">
+      <%= submit gettext("Submit"), class: "button is-primary" %>
+    </div>
+    <div class="control">
+      <%= link gettext("Back"), to: user_path(@conn, :index), class: "button" %>
+    </div>
   </div>
 <% end %>

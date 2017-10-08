@@ -19,10 +19,7 @@ defmodule ChurchifyWeb.UserController do
       {:ok, user} ->
         WebAuth.send_token(user)
 
-        conn
-        |> put_flash(:success,
-                     gettext("Signed up sucessfully. Please check your email."))
-        |> redirect(to: user_path(conn, :edit, user))
+        redirect(conn, to: user_path(conn, :edit, user))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

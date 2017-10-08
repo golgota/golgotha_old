@@ -14,7 +14,7 @@
   <body>
     <%= render "header.html", conn: @conn, current_user: @current_user %>
 
-    <main>
+    <main class="container">
       <%= render "messages.html", conn: @conn %>
 
       <%= render @view_module, @view_template, assigns %>

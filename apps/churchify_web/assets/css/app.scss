@@ -4,10 +4,9 @@
 @import "elements/_all";
 @import "grid/_all";
 @import "components/message";
+@import "layout/hero";
 
 // generic
 @import "header";
 @import "container";
-
-// pages
-@import "page";
+@import "elements";

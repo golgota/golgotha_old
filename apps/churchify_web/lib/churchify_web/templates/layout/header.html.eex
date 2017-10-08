@@ -18,6 +18,10 @@
           to: user_path(@conn, :index),
           class: "navbar-item",
           tabindex: -1 %>
+        <%= link gettext("People"),
+          to: person_path(@conn, :index),
+          class: "navbar-item",
+          tabindex: -1 %>
       <% end %>
     </div>
     <div class="navbar-end">

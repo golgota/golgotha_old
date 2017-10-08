@@ -1,6 +1,6 @@
-<h2>Edit Person</h2>
+<h1 class="title has-text-centered"><%= gettext("Edit Person") %></h1>
 
-<%= render "form.html", changeset: @changeset,
-                        action: person_path(@conn, :update, @person) %>
-
-<span><%= link "Back", to: person_path(@conn, :index) %></span>
+<%= render "form.html",
+  conn: @conn,
+  changeset: @changeset,
+  action: person_path(@conn, :update, @person) %>

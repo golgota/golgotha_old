@@ -14,6 +14,5 @@ defmodule Churchify.Repo.Migrations.CreateChurchify.Member.Person do
 
       timestamps()
     end
-
   end
 end

@@ -4,7 +4,7 @@ defmodule Churchify.Auth.Token do
   alias Churchify.Auth.Token
   alias Churchify.Auth.User
 
-  schema "auth_tokens" do
+  schema "tokens" do
     field :value, :string
 
     belongs_to :user, User

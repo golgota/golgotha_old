@@ -3,7 +3,7 @@ defmodule Churchify.Auth.User do
   import Ecto.Changeset
   alias Churchify.Auth.User
 
-  schema "auth_users" do
+  schema "users" do
     field :email, :string
 
     timestamps()

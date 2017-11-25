@@ -7,21 +7,228 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= label f, :name, class: "label" %>
-    <div class="control">
-      <%= text_input f, :name, class: "input" %>
+  <div class="columns">
+    <div class="field column">
+      <%= label f, :name, class: "label" %>
+      <div class="control">
+        <%= text_input f, :name, class: "input" %>
+      </div>
+      <%= error_tag f, :name %>
     </div>
-    <%= error_tag f, :name %>
+    <div class="field column">
+      <%= label f, :gender, class: "label" %>
+      <div class="control">
+        <%= text_input f, :gender, class: "input" %>
+      </div>
+      <%= error_tag f, :gender %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= label f, :gender, class: "label" %>
-    <div class="control">
-      <%= text_input f, :gender, class: "input" %>
+  <h2 class="subtitle has-text-centered">
+    <%= gettext("Birth Info") %>
+  </h2>
+
+  <%= inputs_for f, :birth_info, fn ff -> %>
+    <div class="columns">
+      <div class="field column">
+        <%= label ff, gettext("Birth date"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :date, class: "input" %>
+        </div>
+        <%= error_tag ff, :date %>
+      </div>
+      <div class="field column">
+        <%= label ff, gettext("Birth country"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :country, class: "input" %>
+        </div>
+        <%= error_tag ff, :country %>
+      </div>
     </div>
-    <%= error_tag f, :gender %>
-  </div>
+
+    <div class="columns">
+      <div class="field column">
+        <%= label ff, gettext("Birth state"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :state, class: "input" %>
+        </div>
+        <%= error_tag ff, :state %>
+      </div>
+      <div class="field column">
+        <%= label ff, gettext("Birth city"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :city, class: "input" %>
+        </div>
+        <%= error_tag ff, :city %>
+      </div>
+    </div>
+  <% end %>
+
+  <h2 class="subtitle has-text-centered">
+    <%= gettext("Address Info") %>
+  </h2>
+
+  <%= inputs_for f, :address_info, fn ff -> %>
+    <div class="columns">
+      <div class="field column">
+        <%= label ff, :zip_code, class: "label" %>
+        <div class="control">
+          <%= text_input ff, :zip_code, class: "input" %>
+        </div>
+        <%= error_tag ff, :zip_code %>
+      </div>
+      <div class="field column">
+        <%= label ff, :country, class: "label" %>
+        <div class="control">
+          <%= text_input ff, :country, class: "input" %>
+        </div>
+        <%= error_tag ff, :country %>
+      </div>
+      <div class="field column">
+        <%= label ff, :state, class: "label" %>
+        <div class="control">
+          <%= text_input ff, :state, class: "input" %>
+        </div>
+        <%= error_tag ff, :state %>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="field column">
+        <%= label ff, :city, class: "label" %>
+        <div class="control">
+          <%= text_input ff, :city, class: "input" %>
+        </div>
+        <%= error_tag ff, :city %>
+      </div>
+      <div class="field column">
+        <%= label ff, :neighborhood, class: "label" %>
+        <div class="control">
+          <%= text_input ff, :neighborhood, class: "input" %>
+        </div>
+        <%= error_tag ff, :neighborhood %>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="field column is-three-quarters">
+        <%= label ff, :street, class: "label" %>
+        <div class="control">
+          <%= text_input ff, :street, class: "input" %>
+        </div>
+        <%= error_tag ff, :street %>
+      </div>
+      <div class="field column">
+        <%= label ff, :number, class: "label" %>
+        <div class="control">
+          <%= text_input ff, :number, class: "input" %>
+        </div>
+        <%= error_tag ff, :number %>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="field column">
+        <%= label ff, :more_info, class: "label" %>
+        <div class="control">
+          <%= textarea ff, :more_info, class: "input" %>
+        </div>
+        <%= error_tag ff, :more_info %>
+      </div>
+    </div>
+  <% end %>
+
+  <h2 class="subtitle has-text-centered">
+    <%= gettext("Civil Info") %>
+  </h2>
+
+  <%= inputs_for f, :civil_info, fn ff -> %>
+    <div class="columns">
+      <div class="field column">
+        <%= label ff, gettext("Status"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :status, class: "input" %>
+        </div>
+        <%= error_tag ff, :status %>
+      </div>
+      <div class="field column">
+        <%= label ff, gettext("Partner"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :partner_id, class: "input" %>
+        </div>
+        <%= error_tag ff, :partner_id %>
+      </div>
+    </div>
+  <% end %>
+
+  <h2 class="subtitle has-text-centered">
+    <%= gettext("Contact Info") %>
+  </h2>
+
+  <%= inputs_for f, :contact_info, fn ff -> %>
+    <div class="columns">
+      <div class="field column">
+        <%= label ff, gettext("Email"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :email, class: "input" %>
+        </div>
+        <%= error_tag ff, :email %>
+      </div>
+      <div class="field column">
+        <%= label ff, gettext("Phone"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :phone, class: "input" %>
+        </div>
+        <%= error_tag ff, :phone %>
+      </div>
+      <div class="field column">
+        <%= label ff, gettext("Cellphone"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :cellphone, class: "input" %>
+        </div>
+        <%= error_tag ff, :cellphone %>
+      </div>
+    </div>
+  <% end %>
+
+  <h2 class="subtitle has-text-centered">
+    <%= gettext("Professional Info") %>
+  </h2>
+
+  <%= inputs_for f, :professional_info, fn ff -> %>
+    <div class="columns">
+      <div class="field column">
+        <%= label ff, gettext("Profession"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :profession, class: "input" %>
+        </div>
+        <%= error_tag ff, :profession %>
+      </div>
+    </div>
+  <% end %>
+
+  <h2 class="subtitle has-text-centered">
+    <%= gettext("Church Info") %>
+  </h2>
+
+  <%= inputs_for f, :church_info, fn ff -> %>
+    <div class="columns">
+      <div class="field column">
+        <%= label ff, gettext("Conversion date"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :conversion_date, class: "input" %>
+        </div>
+        <%= error_tag ff, :conversion_date %>
+      </div>
+      <div class="field column">
+        <%= label ff, gettext("Baptism date"), class: "label" %>
+        <div class="control">
+          <%= text_input ff, :baptism_date, class: "input" %>
+        </div>
+        <%= error_tag ff, :baptism_date %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="field is-grouped">
     <div class="control">

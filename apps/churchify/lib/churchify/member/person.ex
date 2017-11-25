@@ -9,7 +9,7 @@ defmodule Churchify.Member.Person do
   alias Churchify.Member.ContactInfo
   alias Churchify.Member.ProfessionalInfo
 
-  schema "member_people" do
+  schema "people" do
     field :name, :string
     field :gender, :string
 
